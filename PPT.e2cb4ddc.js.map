@@ -1,0 +1,1 @@
+{"mappings":"ACAA,QAAQ,GAAG,CAAC","sources":["<anon>","src/index.ts"],"sourcesContent":["var $b4e14b6b8da86996$exports = {};\nconsole.log(\"Hola Mundo\");\n\n\n//# sourceMappingURL=PPT.e2cb4ddc.js.map\n","console.log(\"Hola Mundo\");\r\n"],"names":["console","log"],"version":3,"file":"PPT.e2cb4ddc.js.map"}
