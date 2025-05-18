@@ -50,7 +50,7 @@ class e extends HTMLElement{constructor(){super(),this.render()}render(){let e=t
       <img src="${a}" alt="Papel" class="hand" data-type="papel">
       <img src="${o}" alt="Tijera" class="hand" data-type="tijera">
     </div>
-    `;let e=this.shadow.querySelectorAll(".hand");e.forEach(t=>{t.addEventListener("click",()=>{e.forEach(e=>e.classList.remove("active")),t.classList.add("active")})})}}customElements.define("hand-select",i);const n={data:{juego:{miJugada:"",pcJugada:""},historial:[],resultados:{usuario:0,computadora:0,empate:0}},listeners:[],setJugadaActual(e){let t={...this.getState(),juego:e};this.setState(t)},ganador:e=>e.miJugada===e.pcJugada?"empate":"papel"===e.miJugada&&"piedra"===e.pcJugada||"piedra"===e.miJugada&&"tijera"===e.pcJugada||"tijera"===e.miJugada&&"papel"===e.pcJugada?"usuario":"computadora",agregarHistorial(e){let t=this.getState(),a=[...t.historial,e],o={...t,historial:a};this.setState(o)},agregarResultado(e){let t=this.getState(),a=this.ganador(e),o={...t.resultados};"usuario"===a?o.usuario++:"computadora"===a?o.computadora++:"empate"===a&&o.empate++;let i={...t,resultados:o};this.setState(i)},init(){let e=localStorage.getItem("stateData"),t=e?JSON.parse(e):{},a={juego:t.juego||{miJugada:"",pcJugada:""},historial:t.historial||[],resultados:t.resultados||{usuario:0,computadora:0,empate:0}};console.log("Estado inicializado:",a),this.setState(a),localStorage.setItem("stateData",JSON.stringify(this.data))},getState(){return this.data},setState(e){for(let t of(this.data=e,this.listeners))t();let t=JSON.stringify(this.data);localStorage.setItem("stateData",t)},subscribe(e){this.listeners.push(e)}},r=[{path:/\/wellcome/,component:function(e){let t=document.createElement("div"),a=t.attachShadow({mode:"open"});a.innerHTML=`
+    `;let e=this.shadow.querySelectorAll(".hand");e.forEach(t=>{t.addEventListener("click",()=>{e.forEach(e=>e.classList.remove("active")),t.classList.add("active")})})}}customElements.define("hand-select",i);const n={data:{juego:{miJugada:"",pcJugada:""},historial:[],resultados:{usuario:0,computadora:0,empate:0}},listeners:[],setJugadaActual(e){let t={...this.getState(),juego:e};this.setState(t)},ganador:e=>e.miJugada===e.pcJugada?"empate":"papel"===e.miJugada&&"piedra"===e.pcJugada||"piedra"===e.miJugada&&"tijera"===e.pcJugada||"tijera"===e.miJugada&&"papel"===e.pcJugada?"usuario":"computadora",agregarHistorial(e){let t=this.getState(),a=[...t.historial,e],o={...t,historial:a};this.setState(o)},agregarResultado(e){let t=this.getState(),a=this.ganador(e),o={...t.resultados};"usuario"===a?o.usuario++:"computadora"===a?o.computadora++:"empate"===a&&o.empate++;let i={...t,resultados:o};this.setState(i)},init(){let e=localStorage.getItem("stateData"),t=e?JSON.parse(e):{},a={juego:t.juego||{miJugada:"",pcJugada:""},historial:t.historial||[],resultados:t.resultados||{usuario:0,computadora:0,empate:0}};console.log("Estado inicializado:",a),this.setState(a),localStorage.setItem("stateData",JSON.stringify(this.data))},getState(){return this.data},setState(e){for(let t of(this.data=e,this.listeners))t();let t=JSON.stringify(this.data);localStorage.setItem("stateData",t)},subscribe(e){this.listeners.push(e)}};function r(e){let t=document.createElement("div"),a=t.attachShadow({mode:"open"});a.innerHTML=`
       <style>
         * {
             box-sizing: border-box;
@@ -95,7 +95,7 @@ class e extends HTMLElement{constructor(){super(),this.render()}render(){let e=t
         </div>
         <hand-select class= "select"></hand-select>
       </div>
-       `;let o=a.querySelector(".startButton");return o&&o.addEventListener("click",()=>{e.goTo("/instrucciones")}),t}},{path:/\/instrucciones/,component:function(e){let t=document.createElement("div"),a=t.attachShadow({mode:"open"});a.innerHTML=`
+       `;let o=a.querySelector(".startButton");return o&&o.addEventListener("click",()=>{e.goTo("/instrucciones")}),t}const s=[{path:/\/wellcome/,component:r},{path:/\/instrucciones/,component:function(e){let t=document.createElement("div"),a=t.attachShadow({mode:"open"});a.innerHTML=`
       <style>
         * {
             box-sizing: border-box;
@@ -228,6 +228,29 @@ class e extends HTMLElement{constructor(){super(),this.render()}render(){let e=t
         font-size: 30px;
         font-weight: bold;
       }
+      .contenedor-closeButton{
+        width: 335px; 
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .closeButton{
+        width: 65px;
+        height: 65px;
+        font-family: "Odibee Sans", sans-serif;
+        font-weight: 400;
+        font-size: 45px;
+        letter-spacing: 5%;
+        font-weight: 400;
+        padding: 0;
+        color: #D8FCFC ;
+        border: 10px solid #001997;
+        border-radius: 4px;
+        background-color: #006CFC;
+        color: white;
+        cursor: pointer;
+        text-align: center;
+      }
       .win {
         background-color: rgba(40, 167, 69, 0.7);
         color: white;
@@ -276,13 +299,14 @@ class e extends HTMLElement{constructor(){super(),this.render()}render(){let e=t
       }  
       .contenedor-button{
         width: 335px;
-        opacity:inherit;
       }
     </style>
     <div class="contenedor ${c}">
 
-
-
+      <div class= "contenedor-closeButton">
+        <button class="closeButton">X</button>
+      </div>
+      
 
      <svg width="255" height="260" viewBox="0 0 255 260" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M144.299 45.8325L145.886 46.7163L147.669 46.3755L223.429 31.9126L209.258 109.523L208.946 111.236L209.764 112.772L246.729 182.162L170.214 192.357L168.429 192.594L167.206 193.917L114.278 251.091L81.2017 179.95L80.4517 178.337L78.853 177.56L9.08643 143.653L65.2231 89.3306L66.4849 88.1108L66.7065 86.3696L76.6724 8.17236L144.299 45.8325Z" fill=          ${"usuario"===i?"#6CB46C":"computadora"===i?"#DC5B49":"#c4c118"} stroke="black" stroke-width="10"/>
@@ -310,5 +334,5 @@ class e extends HTMLElement{constructor(){super(),this.render()}render(){let e=t
       <custom-button class= "playAgainButton" label= "Volver a Jugar"></custom-button>
       </div>
     </div>
-  `;let d=a.querySelector(".playAgainButton");return console.log(d),d?.addEventListener("click",()=>{e.goTo("/juego")}),t}}],s="/desafio-ppt";function l(){return location.host.includes("github.io")}n.init();const c=document.querySelector(".root");if(c){function d(e){if("string"==typeof e){let t=l()?s+e:e;try{history.pushState({},"",t),u(t)}catch(e){console.error("Error al cambiar de ruta con pushState, usando location.href",e),window.location.href=t}}else console.error("La ruta debe ser un string:",e)}function u(e){console.log("el handle route recibió una nueva ruta: ",e);let t=e;for(let a of(l()&&""===(t=e.replace(s,""))&&(t="/wellcome"),console.log("Ruta procesada:",t),r))if(a.path.test(t)){c.dataset.currentRoute=t;let e=a.component({goTo:d});c.innerHTML="",c.appendChild(e)}}"/"===location.pathname?d("/wellcome"):u(location.pathname),window.onpopstate=function(e){u(e.state?e.state.path:location.pathname)}}else console.error("Error: No se encontró el elemento con la clase .root");
-//# sourceMappingURL=ppt.1a7b7cb7.js.map
+  `;let d=a.querySelector(".closeButton");d?.addEventListener("click",()=>{e.goTo("/wellcome")});let u=a.querySelector(".playAgainButton");return u?.addEventListener("click",()=>{e.goTo("/juego")}),t}},{path:/\/404/,component:r}],l="/desafio-ppt";function c(){return location.host.includes("github.io")}n.init();const d=document.querySelector(".root");if(d){function u(e){if("string"==typeof e){let t=c()?l+e:e;try{history.pushState({},"",t),p(t)}catch(e){console.error("Error al cambiar de ruta con pushState, usando location.href",e),window.location.href=t}}else console.error("La ruta debe ser un string:",e)}function p(e){console.log("El handleRoute recibió una nueva ruta: ",e);let t=e;c()&&((t=e.startsWith(l)?e.slice(l.length):e)&&"/"!==t||(t="/wellcome")),console.log("Ruta procesada correctamente:",t);let a=!1;for(let e of s)if(e.path.test(t)){a=!0,d.dataset.currentRoute=t;let o=e.component({goTo:u});d.innerHTML="",d.appendChild(o);break}a||(console.warn("Ruta no encontrada, redirigiendo a /wellcome"),u("/wellcome"))}"/"===location.pathname?u("/wellcome"):p(location.pathname),window.onpopstate=function(e){p(e.state?e.state.path:location.pathname)}}else console.error("Error: No se encontró el elemento con la clase .root");
+//# sourceMappingURL=ppt.16520896.js.map
