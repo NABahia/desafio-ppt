@@ -8,6 +8,7 @@ const routes = [
   { path: /\/instrucciones/, component: initInstructions },
   { path: /\/juego/, component: initGame },
   { path: /\/resultado/, component: initResult },
+  { path: /\/404/, component: initWellcome },
 ];
 
 const BASE_PATH = "/desafio-ppt";
@@ -20,23 +21,52 @@ export function initRouter(container: HTMLElement) {
   function goTo(path) {
     if (typeof path === "string") {
       const completePath = isGithubPages() ? BASE_PATH + path : path;
-      history.pushState({}, "", completePath);
-      handleRoute(completePath);
+      try {
+        history.pushState({}, "", completePath);
+        handleRoute(completePath);
+      } catch (error) {
+        console.error(
+          "Error al cambiar de ruta con pushState, usando location.href",
+          error
+        );
+        window.location.href = completePath;
+      }
     } else {
       console.error("La ruta debe ser un string:", path);
     }
   }
 
   function handleRoute(route) {
-    console.log("el handle route recibió una nueva ruta: ", route);
+    console.log("El handleRoute recibió una nueva ruta: ", route);
+
+    let newRoute = route;
+    if (isGithubPages()) {
+      newRoute = route.startsWith(BASE_PATH)
+        ? route.slice(BASE_PATH.length)
+        : route;
+      if (!newRoute || newRoute === "/") {
+        newRoute = "/wellcome";
+      }
+    }
+
+    console.log("Ruta procesada correctamente:", newRoute);
+
+    let foundRoute = false;
 
     for (const r of routes) {
-      if (r.path.test(route)) {
-        container.dataset.currentRoute = route;
-        const el = r.component({ goTo: goTo });
+      if (r.path.test(newRoute)) {
+        foundRoute = true;
+        container.dataset.currentRoute = newRoute;
+        const el = r.component({ goTo });
         container.innerHTML = "";
         container.appendChild(el);
+        break;
       }
+    }
+
+    if (!foundRoute) {
+      console.warn("Ruta no encontrada, redirigiendo a /wellcome");
+      goTo("/wellcome");
     }
   }
 
@@ -46,7 +76,8 @@ export function initRouter(container: HTMLElement) {
     handleRoute(location.pathname);
   }
 
-  window.onpopstate = function () {
-    handleRoute(location.pathname);
+  window.onpopstate = function (event) {
+    const currentPath = event.state ? event.state.path : location.pathname;
+    handleRoute(currentPath);
   };
 }

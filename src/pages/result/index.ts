@@ -37,6 +37,29 @@ export function initResult(params) {
         font-size: 30px;
         font-weight: bold;
       }
+      .contenedor-closeButton{
+        width: 335px; 
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .closeButton{
+        width: 65px;
+        height: 65px;
+        font-family: "Odibee Sans", sans-serif;
+        font-weight: 400;
+        font-size: 45px;
+        letter-spacing: 5%;
+        font-weight: 400;
+        padding: 0;
+        color: #D8FCFC ;
+        border: 10px solid #001997;
+        border-radius: 4px;
+        background-color: #006CFC;
+        color: white;
+        cursor: pointer;
+        text-align: center;
+      }
       .win {
         background-color: rgba(40, 167, 69, 0.7);
         color: white;
@@ -85,13 +108,14 @@ export function initResult(params) {
       }  
       .contenedor-button{
         width: 335px;
-        opacity:inherit;
       }
     </style>
     <div class="contenedor ${resultClass}">
 
-
-
+      <div class= "contenedor-closeButton">
+        <button class="closeButton">X</button>
+      </div>
+      
 
      <svg width="255" height="260" viewBox="0 0 255 260" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M144.299 45.8325L145.886 46.7163L147.669 46.3755L223.429 31.9126L209.258 109.523L208.946 111.236L209.764 112.772L246.729 182.162L170.214 192.357L168.429 192.594L167.206 193.917L114.278 251.091L81.2017 179.95L80.4517 178.337L78.853 177.56L9.08643 143.653L65.2231 89.3306L66.4849 88.1108L66.7065 86.3696L76.6724 8.17236L144.299 45.8325Z" fill=          ${
@@ -132,9 +156,13 @@ export function initResult(params) {
       </div>
     </div>
   `;
-  const playAgainButton = shadow.querySelector(".playAgainButton");
+  const closeButton = shadow.querySelector(".closeButton");
 
-  console.log(playAgainButton);
+  closeButton?.addEventListener("click", () => {
+    params.goTo("/wellcome");
+  });
+
+  const playAgainButton = shadow.querySelector(".playAgainButton");
   playAgainButton?.addEventListener("click", () => {
     params.goTo("/juego");
   });
