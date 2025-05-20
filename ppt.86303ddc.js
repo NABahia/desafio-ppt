@@ -66,34 +66,48 @@ class e extends HTMLElement{constructor(){super(),this.render()}render(){let e=t
         .o{
         color: #91CCAF;
         }
+
+
+        .contenedor-ventana{
+          display: flex;
+          align-items: center; 
+        }
+        @media (min-height: 600px) {
+          .contenedor-ventana{
+            height: 100vh;
+          }
+        }
+
         .contenedor{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 30px;
-        text-align: center;
-        width: 100vw;
-        height: 100vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          text-align: center;
+          width: 100vw;
+          height: 80vh;
+          max-height: 667px;
         }
         .contenedor-texto{
-        width: 284px;
+          width: 284px;
         }
         .contenedor-button{
           width: 335px;
         }
         .select{
-        margin-top: 89px;
+
         }
       </style>
-      <div class= "contenedor">
-        <div class= "contenedor-texto">
-          <h1 class= "h1">Piedra Papel <span class= "o">\xf3</span>Tijera</h1>
+      <div class= "contenedor-ventana">
+        <div class= "contenedor">
+          <div class= "contenedor-texto">
+            <h1 class= "h1">Piedra Papel <span class= "o">\xf3</span>Tijera</h1>
+          </div>
+          <div class= "contenedor-button">
+            <custom-button class= "startButton" label= "Empezar"></custom-button>
+          </div>
+          <hand-select class= "select"></hand-select>
         </div>
-        <div class= "contenedor-button">
-          <custom-button class= "startButton" label= "Empezar"></custom-button>
-        </div>
-        <hand-select class= "select"></hand-select>
       </div>
        `;let o=a.querySelector(".startButton");return o&&o.addEventListener("click",()=>{e.goTo("/instrucciones")}),t}const s=[{path:/\/wellcome/,component:r},{path:/\/instrucciones/,component:function(e){let t=document.createElement("div"),a=t.attachShadow({mode:"open"});a.innerHTML=`
       <style>
@@ -108,15 +122,26 @@ class e extends HTMLElement{constructor(){super(),this.render()}render(){let e=t
           letter-spacing: 0%;
           text-align: center;
         }
+
+        .contenedor-ventana{
+          display: flex;
+          align-items: center; 
+        }
+        @media (min-height: 600px) {
+          .contenedor-ventana{
+            height: 100vh;
+          }
+        }
+
         .contenedor{
-         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 30px;
-        text-align: center;
-        width: 100vw;
-        height: 100vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          text-align: center;
+          width: 100vw;
+          height: 80vh;
+          max-height: 667px;
         }
         .contenedor-texto{
           width: 284px;
@@ -125,14 +150,16 @@ class e extends HTMLElement{constructor(){super(),this.render()}render(){let e=t
           width: 335px;
         }
       </style>
-      <div class= "contenedor">
-        <div class= "contenedor-texto">
-          <h1 class= "h1">Presion\xe1 jugar y eleg\xed: piedra, papel o tijera antes de que pasen los 3 segundos.</h1>
+      <div class= "contenedor-ventana">
+        <div class= "contenedor">
+          <div class= "contenedor-texto">
+            <h1 class= "h1">Presion\xe1 jugar y eleg\xed: piedra, papel o tijera antes de que pasen los 3 segundos.</h1>
+          </div>
+          <div class= "contenedor-button">
+            <custom-button class= "playButton" label= "\xa1Jugar!"></custom-button>
+          </div>
+            <hand-select class= "select"></hand-select>
         </div>
-        <div class= "contenedor-button">
-          <custom-button class= "playButton" label= "\xa1Jugar!"></custom-button>
-        </div>
-          <hand-select class= "select"></hand-select>
       </div>
        `;let o=a.querySelector(".playButton");return o&&o.addEventListener("click",()=>{e.goTo("/juego")}),t}},{path:/\/juego/,component:function(e){let i=document.createElement("div"),r=i.attachShadow({mode:"open"});r.innerHTML=`
     <style>
@@ -185,33 +212,62 @@ class e extends HTMLElement{constructor(){super(),this.render()}render(){let e=t
       </div>
       <hand-select></hand-select>
     </div>
-  `;let s=r.querySelector(".counter"),l=r.querySelector("circle"),c=r.querySelector("hand-select"),d=3,u=()=>{if(l){let e=d/3*283;l.style.strokeDashoffset=e.toString()}setTimeout(()=>{s&&(s.textContent=d.toString())},900)};u();let p=setInterval(()=>{if(d--,u(),0===d||c?.shadowRoot?.querySelector(".active")){clearInterval(p);let l=c?.shadowRoot?.querySelector(".active");if(l){var i,s;let c={1:"piedra",2:"papel",3:"tijera"}[s=3,i=Math.ceil(i=1),Math.floor(Math.random()*((s=Math.floor(s))-i+1)+i)],d=l.getAttribute("data-type"),u={miJugada:d,pcJugada:c};if(u){n.setJugadaActual(u);let e=n.getState();n.agregarHistorial(e.juego),n.agregarResultado(e.juego),r.innerHTML="",r.innerHTML=`
+  `;let s=r.querySelector(".counter"),l=r.querySelector("circle"),d=r.querySelector("hand-select"),c=3,u=()=>{if(l){let e=c/3*283;l.style.strokeDashoffset=e.toString()}setTimeout(()=>{s&&(s.textContent=c.toString())},900)};u();let p=setInterval(()=>{if(c--,u(),0===c||d?.shadowRoot?.querySelector(".active")){clearInterval(p);let l=d?.shadowRoot?.querySelector(".active");if(l){var i,s;let d={1:"piedra",2:"papel",3:"tijera"}[s=3,i=Math.ceil(i=1),Math.floor(Math.random()*((s=Math.floor(s))-i+1)+i)],c=l.getAttribute("data-type"),u={miJugada:c,pcJugada:d};if(u){n.setJugadaActual(u);let e=n.getState();n.agregarHistorial(e.juego),n.agregarResultado(e.juego),r.innerHTML="",r.innerHTML=`
           <style>
             img{
-            display: none;
-            margin: 0 auto;
-            width: 170px;
+              display: none;
+              margin: 0 auto;
+              width: 135px;
+            }
+            @media (min-height: 600px) {
+              img{
+                width: 170px;
+            }
+            }
+
+            .contenedor-ventana{
+              display: flex;
+              align-items: center; 
+            }
+
+            @media (min-height: 600px) {
+              .contenedor-ventana{
+                height: 100vh;          
+              }
+            }
+            .contenedor {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: space-between;
+              gap: 30px;
+              text-align: center;
+              width: 100vw;
+              height: 80vh;
+              max-height: 667px;
             }
             .computerHand{
               transform: rotate(180deg);
             }
-            .separador{
-              height: 50px;
-            }
           </style>
-          <div class= computadoraContainer>        
-            <img id= "piedra" src="${t}" alt="Piedra" class="computerHand" data-type="piedra">
-            <img id= "papel" src="${a}" alt="Papel" class="computerHand" data-type="papel">
-            <img id= "tijera" src="${o}" alt="Tijera" class="computerHand" data-type="tijera">
+          <div class= "contenedor-ventana">
+            <div class="contenedor">
+
+              <div class= computadoraContainer>        
+                <img id= "piedra" src="${t}" alt="Piedra" class="computerHand" data-type="piedra">
+                <img id= "papel" src="${a}" alt="Papel" class="computerHand" data-type="papel">
+                <img id= "tijera" src="${o}" alt="Tijera" class="computerHand" data-type="tijera">
+              </div>
+
+              <div class= usuarioContainer>        
+                <img id= "piedra" src="${t}" alt="Piedra" class="userHand" data-type="piedra">
+                <img id= "papel" src="${a}" alt="Papel" class="userHand" data-type="papel">
+                <img id= "tijera" src="${o}" alt="Tijera" class="userHand" data-type="tijera">
+              </div>
+
+            </div>
           </div>
-          <div class= separador>        
-          </div>
-          <div class= usuarioContainer>        
-            <img id= "piedra" src="${t}" alt="Piedra" class="userHand" data-type="piedra">
-            <img id= "papel" src="${a}" alt="Papel" class="userHand" data-type="papel">
-            <img id= "tijera" src="${o}" alt="Tijera" class="userHand" data-type="tijera">
-          </div>
-          `,r.querySelectorAll(".userHand").forEach(e=>{e.id===d&&(e.style.display="block")}),r.querySelectorAll(".computerHand").forEach(e=>{e.id===c&&(e.style.display="block")}),console.log(n.getState().juego)}setTimeout(()=>{e.goTo("/resultados")},1400)}else setTimeout(()=>{e.goTo("/instrucciones")},1200)}},1e3);return i}},{path:/\/resultado/,component:function(e){let t=document.createElement("div"),a=t.attachShadow({mode:"open"}),o=n.getState(),i=n.ganador(o.juego),r=o.resultados.usuario,s=o.resultados.computadora,l=o.resultados.empate,c="";c="usuario"===i?"win":"computadora"===i?"lose":"draw",a.innerHTML=`
+          `,r.querySelectorAll(".userHand").forEach(e=>{e.id===c&&(e.style.display="block")}),r.querySelectorAll(".computerHand").forEach(e=>{e.id===d&&(e.style.display="block")}),console.log(n.getState().juego)}setTimeout(()=>{e.goTo("/resultados")},1400)}else setTimeout(()=>{e.goTo("/instrucciones")},1200)}},1e3);return i}},{path:/\/resultado/,component:function(e){let t=document.createElement("div"),a=t.attachShadow({mode:"open"}),o=n.getState(),i=n.ganador(o.juego),r=o.resultados.usuario,s=o.resultados.computadora,l=o.resultados.empate,d="";d="usuario"===i?"win":"computadora"===i?"lose":"draw",a.innerHTML=`
     <style>
       * {
         box-sizing: border-box;
@@ -220,14 +276,17 @@ class e extends HTMLElement{constructor(){super(),this.render()}render(){let e=t
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        gap: 30px;
+        justify-content:first baseline;
+        gap: 10px;
         text-align: center;
         width: 100vw;
         height: 100vh;
-        font-size: 30px;
-        font-weight: bold;
       }
+      @media (min-height: 600px) {
+        .contenedor {
+          justify-content:center;
+        }
+      } 
       .contenedor-closeButton{
         width: 335px; 
         display: flex;
@@ -235,21 +294,29 @@ class e extends HTMLElement{constructor(){super(),this.render()}render(){let e=t
       }
 
       .closeButton{
-        width: 65px;
-        height: 65px;
+        width: 30px;
+        height: 30px;
         font-family: "Odibee Sans", sans-serif;
         font-weight: 400;
-        font-size: 45px;
+        font-size: 20px;
         letter-spacing: 5%;
         font-weight: 400;
         padding: 0;
         color: #D8FCFC ;
-        border: 10px solid #001997;
+        border: 3px solid #001997;
         border-radius: 4px;
         background-color: #006CFC;
         color: white;
         cursor: pointer;
         text-align: center;
+      }
+      @media (min-height: 600px) {
+        .closeButton{
+          width: 45px;
+          height: 45px;
+          font-size: 30px;
+          border: 8px solid #001997;
+        }
       }
       .win {
         background-color: rgba(40, 167, 69, 0.7);
@@ -265,50 +332,74 @@ class e extends HTMLElement{constructor(){super(),this.render()}render(){let e=t
         background-color: rgba(255, 193, 7, 0.7);
         color: black;
       }
+
       .contenedor-historial{
-        width: 260px;
+        width: 240px;
         border: solid #000000 10px;
         border-radius: 10px;
         background-color: white;
-        padding: 30px;
-        opacity: 100%;
+        padding: 10px;
       }
 
+      @media (min-height: 600px) {
+        .contenedor-historial{
+          width: 260px;
+          border: solid #000000 10px;
+          border-radius: 10px;
+          background-color: white;
+          padding: 30px;
+
+        }
+      }
+
+      
       .score {
         font-family: "Odibee Sans";
         font-weight: 400;
-        font-size: 55px;
+        font-size: 40px;
         color: #000000;
         text-allign: center;
         margin: 0 auto;
         line-height: 100%;
         letter-spacing: 5%;  
         vertical-align: middle;
-        margin-bottom: 15px;
+        margin-bottom: 8px;
       }
+      @media (min-height: 600px) {
+        .score {
+          font-size: 55px;
+          margin-bottom: 15px;
+        }
+      }   
+
       .resultadoIndividual {
         font-family: "Odibee Sans";
         color: #000000;
         font-weight: 400;
-        font-size: 45px;
+        font-size: 35px;
         text-align: end;
         margin: 0 auto;
         line-height: 100%;
         letter-spacing: 5%;
         vertical-align: middle;
       }  
+      @media (min-height: 600px) {
+        .resultadoIndividual {  
+          font-size: 45px;
+        }
+      }
       .contenedor-button{
         width: 335px;
       }
     </style>
-    <div class="contenedor ${c}">
+    <div class="contenedor ${d}">
 
       <div class= "contenedor-closeButton">
         <button class="closeButton">X</button>
       </div>
       
 
-     <svg width="255" height="260" viewBox="0 0 255 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+     <svg width="235" height="240" viewBox="0 0 255 260" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M144.299 45.8325L145.886 46.7163L147.669 46.3755L223.429 31.9126L209.258 109.523L208.946 111.236L209.764 112.772L246.729 182.162L170.214 192.357L168.429 192.594L167.206 193.917L114.278 251.091L81.2017 179.95L80.4517 178.337L78.853 177.56L9.08643 143.653L65.2231 89.3306L66.4849 88.1108L66.7065 86.3696L76.6724 8.17236L144.299 45.8325Z" fill=          ${"usuario"===i?"#6CB46C":"computadora"===i?"#DC5B49":"#c4c118"} stroke="black" stroke-width="10"/>
           <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
           font-size="55px" font-weight="400" font-family="Odibee Sans" fill="white"
@@ -334,5 +425,5 @@ class e extends HTMLElement{constructor(){super(),this.render()}render(){let e=t
       <custom-button class= "playAgainButton" label= "Volver a Jugar"></custom-button>
       </div>
     </div>
-  `;let d=a.querySelector(".closeButton");d?.addEventListener("click",()=>{e.goTo("/wellcome")});let u=a.querySelector(".playAgainButton");return u?.addEventListener("click",()=>{e.goTo("/juego")}),t}},{path:/\/404/,component:r}],l="/desafio-ppt";function c(){return location.host.includes("github.io")}n.init();const d=document.querySelector(".root");if(d){function u(e){if("string"==typeof e){let t=c()?l+e:e;try{history.pushState({},"",t),p(t)}catch(e){console.error("Error al cambiar de ruta con pushState, usando location.href",e),window.location.href=t}}else console.error("La ruta debe ser un string:",e)}function p(e){console.log("El handleRoute recibió una nueva ruta: ",e);let t=e;c()&&((t=e.startsWith(l)?e.slice(l.length):e)&&"/"!==t||(t="/wellcome")),console.log("Ruta procesada correctamente:",t);let a=!1;for(let e of s)if(e.path.test(t)){a=!0,d.dataset.currentRoute=t;let o=e.component({goTo:u});d.innerHTML="",d.appendChild(o);break}a||(console.warn("Ruta no encontrada, redirigiendo a /wellcome"),u("/wellcome"))}"/"===location.pathname?u("/wellcome"):p(location.pathname),window.onpopstate=function(e){p(e.state?e.state.path:location.pathname)}}else console.error("Error: No se encontró el elemento con la clase .root");
-//# sourceMappingURL=ppt.16520896.js.map
+  `;let c=a.querySelector(".closeButton");c?.addEventListener("click",()=>{e.goTo("/wellcome")});let u=a.querySelector(".playAgainButton");return u?.addEventListener("click",()=>{e.goTo("/juego")}),t}},{path:/\/404/,component:r}],l="/desafio-ppt";function d(){return location.host.includes("github.io")}n.init();const c=document.querySelector(".root");if(c){function u(e){if("string"==typeof e){let t=d()?l+e:e;try{history.pushState({},"",t),p(t)}catch(e){console.error("Error al cambiar de ruta con pushState, usando location.href",e),window.location.href=t}}else console.error("La ruta debe ser un string:",e)}function p(e){console.log("El handleRoute recibió una nueva ruta: ",e);let t=e;d()&&((t=e.startsWith(l)?e.slice(l.length):e)&&"/"!==t||(t="/wellcome")),console.log("Ruta procesada correctamente:",t);let a=!1;for(let e of s)if(e.path.test(t)){a=!0,c.dataset.currentRoute=t;let o=e.component({goTo:u});c.innerHTML="",c.appendChild(o);break}a||(console.warn("Ruta no encontrada, redirigiendo a /wellcome"),u("/wellcome"))}"/"===location.pathname?u("/wellcome"):p(location.pathname),window.onpopstate=function(e){p(e.state?e.state.path:location.pathname)}}else console.error("Error: No se encontró el elemento con la clase .root");
+//# sourceMappingURL=ppt.86303ddc.js.map
