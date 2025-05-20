@@ -29,14 +29,17 @@ export function initResult(params) {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        gap: 30px;
+        justify-content:first baseline;
+        gap: 10px;
         text-align: center;
         width: 100vw;
         height: 100vh;
-        font-size: 30px;
-        font-weight: bold;
       }
+      @media (min-height: 600px) {
+        .contenedor {
+          justify-content:center;
+        }
+      } 
       .contenedor-closeButton{
         width: 335px; 
         display: flex;
@@ -44,21 +47,29 @@ export function initResult(params) {
       }
 
       .closeButton{
-        width: 65px;
-        height: 65px;
+        width: 30px;
+        height: 30px;
         font-family: "Odibee Sans", sans-serif;
         font-weight: 400;
-        font-size: 45px;
+        font-size: 20px;
         letter-spacing: 5%;
         font-weight: 400;
         padding: 0;
         color: #D8FCFC ;
-        border: 10px solid #001997;
+        border: 3px solid #001997;
         border-radius: 4px;
         background-color: #006CFC;
         color: white;
         cursor: pointer;
         text-align: center;
+      }
+      @media (min-height: 600px) {
+        .closeButton{
+          width: 45px;
+          height: 45px;
+          font-size: 30px;
+          border: 8px solid #001997;
+        }
       }
       .win {
         background-color: rgba(40, 167, 69, 0.7);
@@ -74,38 +85,62 @@ export function initResult(params) {
         background-color: rgba(255, 193, 7, 0.7);
         color: black;
       }
+
       .contenedor-historial{
-        width: 260px;
+        width: 240px;
         border: solid #000000 10px;
         border-radius: 10px;
         background-color: white;
-        padding: 30px;
-        opacity: 100%;
+        padding: 10px;
       }
 
+      @media (min-height: 600px) {
+        .contenedor-historial{
+          width: 260px;
+          border: solid #000000 10px;
+          border-radius: 10px;
+          background-color: white;
+          padding: 30px;
+
+        }
+      }
+
+      
       .score {
         font-family: "Odibee Sans";
         font-weight: 400;
-        font-size: 55px;
+        font-size: 40px;
         color: #000000;
         text-allign: center;
         margin: 0 auto;
         line-height: 100%;
         letter-spacing: 5%;  
         vertical-align: middle;
-        margin-bottom: 15px;
+        margin-bottom: 8px;
       }
+      @media (min-height: 600px) {
+        .score {
+          font-size: 55px;
+          margin-bottom: 15px;
+        }
+      }   
+
       .resultadoIndividual {
         font-family: "Odibee Sans";
         color: #000000;
         font-weight: 400;
-        font-size: 45px;
+        font-size: 35px;
         text-align: end;
         margin: 0 auto;
         line-height: 100%;
         letter-spacing: 5%;
         vertical-align: middle;
       }  
+      @media (min-height: 600px) {
+        .resultadoIndividual {  
+          font-size: 45px;
+        }
+      }
       .contenedor-button{
         width: 335px;
       }
@@ -117,7 +152,7 @@ export function initResult(params) {
       </div>
       
 
-     <svg width="255" height="260" viewBox="0 0 255 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+     <svg width="235" height="240" viewBox="0 0 255 260" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M144.299 45.8325L145.886 46.7163L147.669 46.3755L223.429 31.9126L209.258 109.523L208.946 111.236L209.764 112.772L246.729 182.162L170.214 192.357L168.429 192.594L167.206 193.917L114.278 251.091L81.2017 179.95L80.4517 178.337L78.853 177.56L9.08643 143.653L65.2231 89.3306L66.4849 88.1108L66.7065 86.3696L76.6724 8.17236L144.299 45.8325Z" fill=          ${
           ganador === "usuario"
             ? "#6CB46C"

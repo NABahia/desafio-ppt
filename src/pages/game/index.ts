@@ -131,28 +131,57 @@ export function initGame(params) {
           shadow.innerHTML = `
           <style>
             img{
-            display: none;
-            margin: 0 auto;
-            width: 170px;
+              display: none;
+              margin: 0 auto;
+              width: 135px;
+            }
+            @media (min-height: 600px) {
+              img{
+                width: 170px;
+            }
+            }
+
+            .contenedor-ventana{
+              display: flex;
+              align-items: center; 
+            }
+
+            @media (min-height: 600px) {
+              .contenedor-ventana{
+                height: 100vh;          
+              }
+            }
+            .contenedor {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: space-between;
+              gap: 30px;
+              text-align: center;
+              width: 100vw;
+              height: 80vh;
+              max-height: 667px;
             }
             .computerHand{
               transform: rotate(180deg);
             }
-            .separador{
-              height: 50px;
-            }
           </style>
-          <div class= computadoraContainer>        
-            <img id= "piedra" src="${piedraImg}" alt="Piedra" class="computerHand" data-type="piedra">
-            <img id= "papel" src="${papelImg}" alt="Papel" class="computerHand" data-type="papel">
-            <img id= "tijera" src="${tijeraImg}" alt="Tijera" class="computerHand" data-type="tijera">
-          </div>
-          <div class= separador>        
-          </div>
-          <div class= usuarioContainer>        
-            <img id= "piedra" src="${piedraImg}" alt="Piedra" class="userHand" data-type="piedra">
-            <img id= "papel" src="${papelImg}" alt="Papel" class="userHand" data-type="papel">
-            <img id= "tijera" src="${tijeraImg}" alt="Tijera" class="userHand" data-type="tijera">
+          <div class= "contenedor-ventana">
+            <div class="contenedor">
+
+              <div class= computadoraContainer>        
+                <img id= "piedra" src="${piedraImg}" alt="Piedra" class="computerHand" data-type="piedra">
+                <img id= "papel" src="${papelImg}" alt="Papel" class="computerHand" data-type="papel">
+                <img id= "tijera" src="${tijeraImg}" alt="Tijera" class="computerHand" data-type="tijera">
+              </div>
+
+              <div class= usuarioContainer>        
+                <img id= "piedra" src="${piedraImg}" alt="Piedra" class="userHand" data-type="piedra">
+                <img id= "papel" src="${papelImg}" alt="Papel" class="userHand" data-type="papel">
+                <img id= "tijera" src="${tijeraImg}" alt="Tijera" class="userHand" data-type="tijera">
+              </div>
+
+            </div>
           </div>
           `;
           const userHands = shadow.querySelectorAll(".userHand");
